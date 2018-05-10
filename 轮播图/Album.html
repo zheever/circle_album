@@ -1,0 +1,95 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>
+    <meta charset="UTF-8">  
+    <title>Document</title>
+    <style type='text/css'>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+
+        #photos{
+            width: 530px;
+            height:300px;
+            margin: 100px 0 0 200px;
+        }
+        
+        .button_container {
+            width: 530px;
+            height:300px;
+            position: absolute;
+            top: 0px;
+            margin: 100px 0 0 200px;
+            z-index: 100;
+        }
+
+        img{
+            width: 530px;
+            height: 300px;
+            position: absolute;
+            border-radius: 10px;
+            z-index: 0;
+        }
+
+        .prev_button {
+            float: left;
+            height: 69px;
+            width: 41px;
+            margin-top: 120px;
+            background: url('./images/icon-slides.png') no-repeat;
+            background-position: -84px 50%;
+        }
+
+        .prev_button:hover {
+            background-position:0 50%;
+        }
+
+        .next_button {
+            float: right;
+            height: 69px;
+            width: 41px;
+            margin-top: 120px;
+            background: url('./images/icon-slides.png') no-repeat;
+            background-position: -125px 50%;
+        }
+
+        .next_button:hover {
+            background-position:-42px 50%;
+        }
+    </style>
+</head>  
+<body>
+    <div class="container">
+        <div id="photos">
+            <img id="pic0" src="./images/150713416389.jpg" alt="">
+            <img id="pic1" src="./images/150719519140.jpg" alt="">
+            <img id="pic2" src="./images/150719602492.jpg" alt="">
+            <img id="pic3" src="./images/1506434387826.jpg" alt="">
+            <img id="pic4" src="./images/1507133690232.jpg" alt="">
+            <img id="pic5" src="./images/1507133807172.jpg" alt="">
+        </div>
+        <div class="button_container">
+            <div class="prev_button"></div>
+            <div class="next_button"></div>
+        </div>
+    </div>
+
+    <script>
+        var index = 0;
+        var photos_num = document.getElementsByTagName("img").length;
+        document.getElementsByClassName('prev_button')[0].onclick = function () {
+        	document.getElementById('pic' + index).style = 'z-index: 0';
+        	index ++;
+        	if (index == photos_num) index = 0;
+        	document.getElementById('pic' + index).style = 'z-index: 50';
+        }
+        document.getElementsByClassName('next_button')[0].onclick = function () {
+        	document.getElementById('pic' + index).style = 'z-index: 0';
+        	index --;
+        	if (index == -1) index = photos_num - 1;
+        	document.getElementById('pic' + index).style = 'z-index: 50';
+        }
+    </script>
+</body>  
+</html>  

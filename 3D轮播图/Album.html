@@ -1,0 +1,107 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>
+    <meta charset="UTF-8">  
+    <title>Document</title>
+    <style type='text/css'>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .container{
+            perspective: 1600px;
+            -webkit-perspective: 1600px;       
+        }
+
+        #photos{
+            width: 339px;
+            height:300px;
+            margin: 200px 500px;
+            transform-style: preserve-3d;
+            transition: all .5s ease;
+            -webkit-transform-style: preserve-3d;
+            -webkit-transition: all .5s ease;
+        }
+        
+        .button_container {
+            width: 339px;
+            height:300px;
+            position: absolute;
+            top: 0px;
+            margin: 0 500px;
+            transform : translateZ(300px);
+            -webkit-transform : translateZ(300px);
+        }
+
+        img{
+            width: 339px;
+            height: 300px;
+            position: absolute;
+            border-radius: 10px;
+        }
+
+        .prev_button {
+            float: left;
+            height: 69px;
+            width: 41px;
+            margin-top: 120px;
+            background: url('./images/icon-slides.png') no-repeat;
+            background-position: -84px 50%;
+        }
+
+        .prev_button:hover {
+            background-position:0 50%;
+        }
+
+        .next_button {
+            float: right;
+            height: 69px;
+            width: 41px;
+            margin-top: 120px;
+            background: url('./images/icon-slides.png') no-repeat;
+            background-position: -125px 50%;
+        }
+
+        .next_button:hover {
+            background-position:-42px 50%;
+        }
+    </style>
+</head>  
+<body>
+    <div class="container">
+        <div id="photos">
+            <img class="pic1" src="./images/150713416389.jpg" alt="">
+            <img class="pic2" src="./images/150719519140.jpg" alt="">
+            <img class="pic3" src="./images/150719602492.jpg" alt="">
+            <img class="pic4" src="./images/1506434387826.jpg" alt="">
+            <img class="pic5" src="./images/1507133690232.jpg" alt="">
+            <img class="pic6" src="./images/1507133807172.jpg" alt="">
+        </div>
+        <div class="button_container">
+            <div class="prev_button"></div>
+            <div class="next_button"></div>
+        </div>
+    </div>
+
+    <script>
+        var photos_container = document.getElementById("photos");
+        var photos_list = photos_container.getElementsByTagName("img");
+        var photos_num = photos_list.length;
+        var ang = Math.floor(360 / photos_num);
+        for(var i = 0; i < photos_num; i++){
+            photos_list[i].style = 'transform : rotateY(' + ang*i + 'deg) translateZ(300px) ';
+        }
+
+        var rotate_deg = 0;
+        document.getElementsByClassName('prev_button')[0].onclick = function () {
+            rotate_deg += ang;
+            photos_container.style = 'transform : rotateY(' + rotate_deg + 'deg)';
+        }
+        document.getElementsByClassName('next_button')[0].onclick = function () {
+            rotate_deg -= ang;
+            photos_container.style = 'transform : rotateY(' + rotate_deg + 'deg)';
+        }
+    </script>
+</body>  
+</html>  
